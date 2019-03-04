@@ -326,7 +326,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (playerVelocity.y == jumpSpeed)
         {
-            JumpSounds();
+            // JumpSounds();
         }
     }
 
@@ -403,23 +403,23 @@ public class PlayerMovement : MonoBehaviour
         GUI.Label(new Rect(0, 30, 400, 100), "Top Speed: " + Mathf.Round(playerTopVelocity * 100) / 100 + "ups", style);
     }
 
-    private void JumpSounds()
-    {
-        var jumpvariance = new[] // array of strings
-        {
-            "Jump1",
-            "Jump2"
-        }; // array of strings that holds the jump sound names
-        System.Random rnd = new System.Random();
-        int range = rnd.Next(0, jumpvariance.Length);
-        string soundToPlay = jumpvariance[range];
+    //private void JumpSounds()
+    //{
+    //    var jumpvariance = new[] // array of strings
+    //    {
+    //        "Jump1",
+    //        "Jump2"
+    //    }; // array of strings that holds the jump sound names
+    //    System.Random rnd = new System.Random();
+    //    int range = rnd.Next(0, jumpvariance.Length);
+    //    string soundToPlay = jumpvariance[range];
 
-        StartCoroutine("waitASecond");
-        FindObjectOfType<AudioManager>().Play(soundToPlay);
-    }
+    //    StartCoroutine("waitASecond");
+    //    FindObjectOfType<AudioManager>().Play(soundToPlay);
+    //}
 
-    IEnumerator waitASecond()
-    {
-        yield return new WaitForSeconds(1);
-    }
+    //IEnumerator waitASecond()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //}
 }
