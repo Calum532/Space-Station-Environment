@@ -42,6 +42,9 @@ namespace UnityStandardAssets.Characters.FirstPerson
         private bool m_Jumping;
         private AudioSource m_AudioSource;
 
+        // Crouching related
+        private bool isCrouching;
+
         // Use this for initialization
         private void Start()
         {
@@ -81,6 +84,29 @@ namespace UnityStandardAssets.Characters.FirstPerson
             }
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
+
+            if (Input.GetKeyDown(KeyCode.LeftControl) && m_CharacterController.isGrounded) // if left ctrl pressed and player is grounded
+            {
+                StartCrouching(); // crouch              
+            }
+            else if (Input.GetKeyUp(KeyCode.LeftControl) && isCrouching) // if we release left ctrl and are currently crouching
+            {
+                StopCrouching();               
+            }
+        }
+
+        private void StartCrouching()
+        {
+            isCrouching = true;
+            m_CharacterController.height /= 2;
+            m_CharacterController.center.Set(m_CharacterController.center.x, m_CharacterController.center.y / 2, m_CharacterController.center.z);
+        }
+
+        private void StopCrouching()
+        {
+            isCrouching = false;
+            m_CharacterController.height *= 2;
+            m_CharacterController.center.Set(m_CharacterController.center.x, m_CharacterController.center.y * 2, m_CharacterController.center.z);
         }
 
 
