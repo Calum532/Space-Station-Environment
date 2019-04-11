@@ -85,11 +85,11 @@ namespace UnityStandardAssets.Characters.FirstPerson
 
             m_PreviouslyGrounded = m_CharacterController.isGrounded;
 
-            if (Input.GetKeyDown(KeyCode.LeftControl) && m_CharacterController.isGrounded) // if left ctrl pressed and player is grounded
+            if (Input.GetKeyDown(KeyCode.C) && m_CharacterController.isGrounded && !isCrouching) // if left ctrl pressed and player is grounded
             {
                 StartCrouching(); // crouch              
             }
-            else if (Input.GetKeyUp(KeyCode.LeftControl) && isCrouching) // if we release left ctrl and are currently crouching
+            else if (Input.GetKeyUp(KeyCode.C) && isCrouching) // if we release left ctrl and are currently crouching
             {
                 StopCrouching();               
             }
