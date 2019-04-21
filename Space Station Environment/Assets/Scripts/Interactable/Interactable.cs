@@ -12,25 +12,28 @@ public class Interactable : MonoBehaviour
     private bool toggle;
 
     private bool lookingAtObject;
-    public GameObject Outline;
+    private Outline _outline;
 
     private bool audioPlayed;
+    
 
     void Awake()
     {
         item = gameObject;
         item.GetComponent<Rigidbody>().isKinematic = true; // physics de-activated
+        _outline = gameObject.GetComponent<Outline>();
+        _outline.OutlineWidth = 0;
     }
 
     void Update()
     {
         if (lookingAtObject)
         {
-            Outline.SetActive(true);
+            _outline.OutlineWidth = 10;
         }
         else
         {
-            Outline.SetActive(false);
+            _outline.OutlineWidth = 0;
         }
 
         distance = Vector3.Distance(item.transform.position, tempParent.transform.position);
@@ -38,7 +41,7 @@ public class Interactable : MonoBehaviour
         if (distance >= 6f)
         {
             isHolding = false;
-            Outline.SetActive(false);
+            _outline.OutlineWidth = 0;
         }
 
         // check if holding
@@ -93,7 +96,7 @@ public class Interactable : MonoBehaviour
     {
         lookingAtObject = false;
         isHolding = false;
-        Outline.SetActive(false);
+        _outline.OutlineWidth = 0;
         toggle = false;
     }
 }
