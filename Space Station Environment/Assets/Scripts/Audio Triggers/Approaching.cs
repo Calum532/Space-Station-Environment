@@ -6,7 +6,7 @@ public class Approaching : MonoBehaviour
     private GameObject player;
     private Vector3 dest;
     public AudioClip[] approachingSounds;    
-    public float speed = 0.5f;
+    public float speed = 0.15f;
 
     void Awake()
     {
