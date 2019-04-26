@@ -55,6 +55,7 @@ public class Interactable : MonoBehaviour
             {
                 audioPlayed = false;
                 item.GetComponent<Rigidbody>().AddForce(tempParent.transform.forward * throwForce);
+                FindObjectOfType<AudioManager>().Play("VentThrown");
                 isHolding = false;
             }
         }
@@ -76,7 +77,7 @@ public class Interactable : MonoBehaviour
             // e to pick up, e again to throw
             if (Input.GetKeyDown(KeyCode.E))
             {
-                // PlayAudio();
+                PlayAudio();
                 toggle = !toggle;
                 item.GetComponent<Rigidbody>().isKinematic = false; // use physics
             }
@@ -98,5 +99,13 @@ public class Interactable : MonoBehaviour
         isHolding = false;
         _outline.OutlineWidth = 0;
         toggle = false;
+    }
+
+    private void PlayAudio()
+    {
+        if (!audioPlayed)
+        {
+            FindObjectOfType<AudioManager>().Play("VentPickup");
+        }
     }
 }
